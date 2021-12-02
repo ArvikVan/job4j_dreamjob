@@ -1,6 +1,7 @@
 package madels;
 
 /**
+ * Модель данных кадровик
  * @author ArvikV
  * @version 1.0
  * @since 02.12.2021
