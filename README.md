@@ -1,6 +1,6 @@
 # job4j_dreamjob
 [![Build Status](https://app.travis-ci.com/ArvikVan/job4j_dreamjob.svg?branch=main)](https://app.travis-ci.com/ArvikVan/job4j_dreamjob)
-[![codecov](https://codecov.io/gh/ArvikVan/job4j_dreamjob/branch/main/graph/badge.svg?token=th7L9BE9TS)](https://codecov.io/gh/ArvikVan/job4j_dreamjob)
+[![codecov](https://codecov.io/gh/ArvikVan/job4j_dreamjob/branch/master/graph/badge.svg?token=SsJi6xoOr4)](https://codecov.io/gh/ArvikVan/job4j_dreamjob)
 
 ## Проект - Потоки<br>
 _В блоке servlet мы будем разрабатывать приложение биржу работы_
