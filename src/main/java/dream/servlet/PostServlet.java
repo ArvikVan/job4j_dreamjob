@@ -1,5 +1,6 @@
 package dream.servlet;
 
+import dream.models.Candidate;
 import dream.models.Post;
 import dream.models.Store;
 

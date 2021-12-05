@@ -20,6 +20,8 @@ public class Store {
 
     private static final AtomicInteger POST_ID = new AtomicInteger(4);
 
+    private static final AtomicInteger CANDIDATE_ID = new AtomicInteger(4);
+
 
     private Store() {
         posts.put(1, new Post(1, "Junior Java Developer"));
@@ -45,6 +47,11 @@ public class Store {
     public void save(Post post) {
         post.setID(POST_ID.incrementAndGet());
         posts.put(post.getID(), post);
+    }
+
+    public void  saveCandidate(Candidate candidate) {
+        candidate.setId(CANDIDATE_ID.incrementAndGet());
+        candidates.put(candidate.getId(), candidate);
     }
 
 }
