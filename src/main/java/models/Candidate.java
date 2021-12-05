@@ -1,4 +1,4 @@
-package madels;
+package models;
 
 /**
  * Модель данных кандидат
