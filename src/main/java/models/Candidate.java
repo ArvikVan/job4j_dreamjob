@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 /**
  * Модель данных кандидат
  * @author ArvikV
@@ -9,14 +11,10 @@ package models;
 public class Candidate {
     private int id;
     private String name;
-    private String education;
-    private String post;
 
-    public Candidate(int id, String name, String education, String post) {
+    public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
-        this.education = education;
-        this.post = post;
     }
 
     public int getId() {
@@ -35,19 +33,20 @@ public class Candidate {
         this.name = name;
     }
 
-    public String getEducation() {
-        return education;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Candidate candidate = (Candidate) o;
+        return id == candidate.id && Objects.equals(name, candidate.name);
     }
 
-    public void setEducation(String education) {
-        this.education = education;
-    }
-
-    public String getPost() {
-        return post;
-    }
-
-    public void setPost(String post) {
-        this.post = post;
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
