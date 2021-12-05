@@ -1,4 +1,4 @@
-package models;
+package dream.models;
 
 import java.util.Collection;
 import java.util.Map;

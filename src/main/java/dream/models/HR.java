@@ -1,4 +1,4 @@
-package models;
+package dream.models;
 
 /**
  * Модель данных кадровик

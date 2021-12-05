@@ -1,36 +1,27 @@
-package models;
+package dream.models;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
+ * Модель данных кандидат
  * @author ArvikV
  * @version 1.0
- * @since 05.12.2021
+ * @since 02.12.2021
  */
-public class Post {
+public class Candidate {
     private int id;
     private String name;
-    private String description;
-    private LocalDateTime created;
 
-    public Post(int id, String name, String description, LocalDateTime created) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.created = created;
-    }
-
-    public Post(int id, String name) {
+    public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getID() {
+    public int getId() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,8 +41,8 @@ public class Post {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Post post = (Post) o;
-        return id == post.id && Objects.equals(name, post.name);
+        Candidate candidate = (Candidate) o;
+        return id == candidate.id && Objects.equals(name, candidate.name);
     }
 
     @Override

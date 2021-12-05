@@ -6,8 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="models.Store" %>
-<%@ page import="models.Post" %>
+<%@ page import="dream.models.Store" %>
+<%@ page import="dream.models.Post" %>
 <!doctype html>
 <html lang="en">
 <head>
