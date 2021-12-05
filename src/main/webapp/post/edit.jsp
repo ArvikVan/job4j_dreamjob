@@ -4,6 +4,8 @@
   Date: 05.12.2021
   Time: 19:49
   To change this template use File | Settings | File Templates.
+  Обратите внимание я добавить к тегу input аттрибут name="name".
+  Это значит, что в запросе на сервер нужно отправить содержимое этого поля с ключом name.
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="dream.models.Store" %>
@@ -35,10 +37,10 @@
                 Новая вакансия.
             </div>
             <div class="card-body">
-                <form>
+                <form action="<%=request.getContextPath()%>/post/save" method="post">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="name">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
