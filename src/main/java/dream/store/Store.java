@@ -25,7 +25,9 @@ public class Store {
 
     private static final AtomicInteger CANDIDATE_ID = new AtomicInteger(4);
 
-
+    /**
+     * хранилище вакансий и кандидатов
+     */
     private Store() {
         posts.put(1, new Post(1, "Junior Java Developer"));
         posts.put(2, new Post(2, "Middle Java Developer"));
@@ -47,14 +49,36 @@ public class Store {
         return candidates.values();
     }
 
+    /**
+     * валидируем
+     * @param post на входе пост
+     *             если ид вакансии равен 0, то генерим новую
+     */
     public void save(Post post) {
-        post.setID(POST_ID.incrementAndGet());
+        if (post.getID() == 0) {
+            post.setID(POST_ID.incrementAndGet());
+        }
         posts.put(post.getID(), post);
     }
 
+    /**
+     * поиск по ид
+     * @param id ид по которому будем искать
+     * @return на выходе вакансия по ид
+     */
+    public Post findById(int id) {
+        return posts.get(id);
+    }
+
     public void  saveCandidate(Candidate candidate) {
-        candidate.setId(CANDIDATE_ID.incrementAndGet());
+        if (candidate.getId() == 0) {
+            candidate.setId(CANDIDATE_ID.incrementAndGet());
+        }
         candidates.put(candidate.getId(), candidate);
+    }
+
+    public Candidate findByIdCandidate(int id) {
+        return candidates.get(id);
     }
 
 }
