@@ -52,7 +52,7 @@
                 <% } %>
             </div>
             <div class="card-body">
-                <form action="<%=request.getContextPath()%>/post/save?id=<%=post.getID()%>" method="post">
+                <form action="<%=request.getContextPath()%>/post.do?id=<%=post.getID()%>" method="post">
                     <div class="form-group">
                         <label>Имя</label>
                         <input type="text" class="form-control" name="name" value = "<%=post.getName()%>">
