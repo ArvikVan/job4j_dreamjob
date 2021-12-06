@@ -1,4 +1,7 @@
-package dream.models;
+package dream.store;
+
+import dream.models.Candidate;
+import dream.models.Post;
 
 import java.util.Collection;
 import java.util.Map;

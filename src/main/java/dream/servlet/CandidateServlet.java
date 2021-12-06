@@ -1,7 +1,7 @@
 package dream.servlet;
 
 import dream.models.Candidate;
-import dream.models.Store;
+import dream.store.Store;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

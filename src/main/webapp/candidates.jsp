@@ -7,7 +7,7 @@
   http://localhost:8081/job4j_dreamjob/candidates.jsp
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="dream.models.Store" %>
+<%@ page import="dream.store.Store" %>
 <%@ page import="dream.models.Candidate" %>
 <!doctype html>
 <html lang="en">

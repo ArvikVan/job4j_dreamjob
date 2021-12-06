@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="dream.models.Store" %>
+<%@ page import="dream.store.Store" %>
 <%@ page import="dream.models.Post" %>
 <!doctype html>
 <html lang="en">
