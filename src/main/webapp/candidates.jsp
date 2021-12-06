@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
   http://localhost:8081/job4j_dreamjob/candidates.jsp
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="dream.store.Store" %>
 <%@ page import="dream.models.Candidate" %>
@@ -31,34 +32,34 @@
 </head>
 <body>
 <div class="container pt-3">
-
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
                 Кандидаты
             </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
                     <tr>
                         <th scope="col">Названия</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <% for (Candidate can : (Collection<Candidate>) request.getAttribute("candidates")) { %>
-                    <tr>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/candidate/edit.jsp?id=<%=can.getId()%>">
-                                <i class="fa fa-edit mr-3"></i>
-                            </a>
-                            <%= can.getName() %></td>
-                    </tr>
-                    <% } %>
-                    </tbody>
-                </table>
+                        </thead>
+                            <tbody>
+                                <c:forEach items="${candidates}" var="candidate">
+                                <tr>
+                                    <td>
+                                        <a href='<c:url value="/candidate/edit.jsp?id=${candidate.id}"/>'>
+                                            <i class="fa fa-edit mr-3"></i>
+                                        </a>
+                                        <c:out value="${candidate.name}"/>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
 </div>
 </body>
 </html>

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
   http://localhost:8081/job4j_dreamjob/posts.jsp
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="dream.store.Store" %>
 <%@ page import="dream.models.Post" %>
@@ -33,32 +34,39 @@
 <div class="container pt-3">
 
     <div class="row">
+
         <div class="card" style="width: 100%">
+
             <div class="card-header">
                 Вакансии
             </div>
+
             <div class="card-body">
                 <table class="table">
                     <thead>
-                    <tr>
-                        <th scope="col">Названия</th>
-                    </tr>
+                        <tr>
+                            <th scope="col">Названия</th>
+                        </tr>
                     </thead>
-                    <tbody>
-                    <% for (Post post : (Collection<Post>) request.getAttribute("posts")) { %>
-                    <tr>
-                        <td>
-                            <a href="<%=request.getContextPath()%>/post/edit.jsp?id=<%=post.getID()%>">
-                                <i class="fa fa-edit mr-3"></i>
-                            </a>
-                            <%= post.getName() %></td>
-                    </tr>
-                    <% } %>
-                    </tbody>
+                            <tbody>
+                                <c:forEach items="${posts}" var="post">
+                                <tr>
+                                    <td>
+                                        <a href='<c:url value="/post/edit.jsp?id=${post.ID}"/>'>
+                                            <i class="fa fa-edit mr-3"></i>
+                                        </a>
+                                        <c:out value="${post.name}"/>
+                                    </td>
+                                </tr>
+                                </c:forEach>
+                            </tbody>
                 </table>
             </div>
+
         </div>
+
     </div>
+
 </div>
 </body>
 </html>
