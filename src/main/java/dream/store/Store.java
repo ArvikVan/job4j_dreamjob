@@ -32,9 +32,9 @@ public class Store {
         posts.put(1, new Post(1, "Junior Java Developer"));
         posts.put(2, new Post(2, "Middle Java Developer"));
         posts.put(3, new Post(3, "Senior Java Developer"));
-        candidates.put(1, new Candidate(1, "Junior Java(Candidate)"));
-        candidates.put(2, new Candidate(2, "Middle Java(Candidate)"));
-        candidates.put(3, new Candidate(3, "Senior Java(Candidate)"));
+        candidates.put(1, new Candidate(1, "Junior Java(Candidate)", "1.png"));
+        candidates.put(2, new Candidate(2, "Middle Java(Candidate)", "2.png"));
+        candidates.put(3, new Candidate(3, "Senior Java(Candidate)", "3.png"));
     }
 
     public static Store instOf() {
@@ -79,6 +79,10 @@ public class Store {
 
     public Candidate findByIdCandidate(int id) {
         return candidates.get(id);
+    }
+
+    public Candidate deleteCandidate(int id) {
+             return candidates.remove(id);
     }
 
 }

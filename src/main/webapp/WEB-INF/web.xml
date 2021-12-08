@@ -16,6 +16,20 @@
     <servlet-name>IndexServlet</servlet-name>
     <servlet-class>dream.servlet.IndexServlet</servlet-class>
   </servlet>
+  <!-- Http протокол позволяет передавать файлы между клиентом и сервером-->
+  <servlet>
+    <servlet-name>DownloadServlet</servlet-name>
+    <servlet-class>dream.servlet.DownloadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>dream.servlet.UploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteServlet</servlet-name>
+    <servlet-class>dream.servlet.DeleteServlet</servlet-class>
+  </servlet>
+
   <servlet-mapping>
     <servlet-name>PostServlet</servlet-name>
     <url-pattern>/post.do</url-pattern>
@@ -24,10 +38,23 @@
     <servlet-name>CandidateServlet</servlet-name>
     <url-pattern>/candidate.do</url-pattern>
   </servlet-mapping>
+  <!-- Обратите внимание. Этот сервлет будет доступен по адресу /index.do.
+  Тут есть расширение, оно нужно будет в разделе безопастность.-->
   <servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index.do</url-pattern>
   </servlet-mapping>
-  <!-- Обратите внимание. Этот сервлет будет доступен по адресу /index.do.
-  Тут есть расширение, оно нужно будет в разделе безопастность.-->
+  <!-- Http протокол позволяет передавать файлы между клиентом и сервером-->
+  <servlet-mapping>
+    <servlet-name>DownloadServlet</servlet-name>
+    <url-pattern>/download</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/upload</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteServlet</servlet-name>
+    <url-pattern>/delete</url-pattern>
+  </servlet-mapping>
 </web-app>

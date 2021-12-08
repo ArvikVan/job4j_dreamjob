@@ -31,6 +31,7 @@
     <title>Работа мечты</title>
 </head>
 <body>
+
 <div class="container pt-3">
     <div class="row">
         <div class="card" style="width: 100%">
@@ -53,8 +54,17 @@
                                         </a>
                                         <c:out value="${candidate.name}"/>
                                     </td>
+                                    <td>
+                                        <form action="<c:url value='/upload?id=${candidate.id}'/>" method="post" enctype="multipart/form-data">
+                                            <button type="submit" class="btn btn-default">Добавить фото</button>
+                                        </form>
+                                        <form action="<c:url value='/delete?id=${candidate.id}'/>" method="post" enctype="multipart/form-data">
+                                            <button type="submit" class="btn btn-default">DELETE</button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 </c:forEach>
+                                <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Back</a>
                             </tbody>
                     </table>
                 </div>

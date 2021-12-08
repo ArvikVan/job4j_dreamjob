@@ -5,16 +5,32 @@ import java.util.Objects;
 /**
  * Модель данных кандидат
  * @author ArvikV
- * @version 1.0
+ * @version 1.1
  * @since 02.12.2021
+ *
  */
 public class Candidate {
     private int id;
     private String name;
+    private String image;
 
     public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Candidate(int id, String name, String image) {
+        this.id = id;
+        this.name = name;
+        this.image = image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
     }
 
     public int getId() {
