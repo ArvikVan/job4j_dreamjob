@@ -1,7 +1,7 @@
 package dream.servlet;
 
 import dream.models.Candidate;
-import dream.store.Store;
+import dream.store.MemStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +22,7 @@ public class CandidateServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        Store.instOf().saveCandidate(
+        MemStore.instOf().saveCandidate(
                 new Candidate(
                         Integer.parseInt(request.getParameter("id")), request.getParameter("name")));
         response.sendRedirect(request.getContextPath() + "/candidate.do");
@@ -35,7 +35,7 @@ public class CandidateServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("candidates", Store.instOf().findAllCandidates());
+        req.setAttribute("candidates", MemStore.instOf().findAllCandidates());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 }
