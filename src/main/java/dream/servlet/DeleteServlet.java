@@ -1,5 +1,6 @@
 package dream.servlet;
 
+import dream.properties.Config;
 import dream.store.Store;
 
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import java.io.IOException;
  * @since 08.12.2021
  */
 public class DeleteServlet extends HttpServlet {
+    String imagePath = Config.getConfig().getProperty("path.images");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -28,7 +30,7 @@ public class DeleteServlet extends HttpServlet {
         String id = req.getParameter("id");
         req.setCharacterEncoding("UTF-8");
         Store.instOf().deleteCandidate(Integer.parseInt(req.getParameter("id")));
-        File file = new File("/home/arvik/IdeaProjects/job4j_dreamjob/src/main/java/dream/images/".concat(id)
+        File file = new File(imagePath.concat(id)
                 + ".png");
         file.delete();
         resp.sendRedirect(req.getContextPath() + "/candidate.do");

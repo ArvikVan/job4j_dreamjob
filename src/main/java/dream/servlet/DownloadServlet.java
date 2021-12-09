@@ -1,4 +1,6 @@
 package dream.servlet;
+import dream.properties.Config;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,17 +16,19 @@ import java.util.Objects;
  * @since 07.12.2021
  */
 public class DownloadServlet extends HttpServlet {
+    String imagePath = Config.getConfig().getProperty("path.images");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         File downloadFile = null;
-        for (File file : Objects.requireNonNull(
-                new File("/home/arvik/IdeaProjects/job4j_dreamjob/src/main/java/dream/images").listFiles())) {
+        for (File file : Objects.requireNonNull(new File(imagePath).listFiles())) {
             if (name.equals(file.getName())) {
                 downloadFile = file;
                 break;
             }
         }
+
+        assert downloadFile != null;
         try (FileInputStream stream = new FileInputStream(downloadFile)) {
             resp.getOutputStream().write(stream.readAllBytes());
             resp.setContentType("application/octet-stream");

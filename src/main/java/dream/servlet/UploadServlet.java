@@ -5,6 +5,7 @@ package dream.servlet;
  * @version 1.0
  * @since 08.12.2021
  */
+import dream.properties.Config;
 import dream.store.Store;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
@@ -25,11 +26,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class UploadServlet extends HttpServlet {
+    String imagePath = Config.getConfig().getProperty("path.images");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> images = new ArrayList<>();
         for (File name : Objects.requireNonNull(
-                new File("/home/arvik/IdeaProjects/job4j_dreamjob/src/main/java/dream/images").listFiles())) {
+                new File(imagePath).listFiles())) {
             images.add(name.getName());
         }
         req.setAttribute("images", images);
@@ -47,7 +49,7 @@ public class UploadServlet extends HttpServlet {
         ServletFileUpload upload = new ServletFileUpload(factory);
         try {
             List<FileItem> items = upload.parseRequest(req);
-            File folder = new File("/home/arvik/IdeaProjects/job4j_dreamjob/src/main/java/dream/images");
+            File folder = new File(imagePath);
             for (FileItem item : items) {
                 if (!item.isFormField()) {
                     File file = new File(folder + File.separator + name + ".png");
