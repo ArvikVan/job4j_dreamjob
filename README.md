@@ -2,7 +2,7 @@
 [![Build Status](https://app.travis-ci.com/ArvikVan/job4j_dreamjob.svg?branch=main)](https://app.travis-ci.com/ArvikVan/job4j_dreamjob)
 [![codecov](https://codecov.io/gh/ArvikVan/job4j_dreamjob/branch/master/graph/badge.svg?token=SsJi6xoOr4)](https://codecov.io/gh/ArvikVan/job4j_dreamjob)
 
-## Проект - Потоки<br>
+## Проект - DreamJob - Servlets<br>
 _В блоке servlet мы будем разрабатывать приложение биржу работы_
 <br>В системе будут два типа пользователей: кандидаты и кадровики. Кандидаты будут публиковать резюме. Кадровики будут публиковать вакансии о работе.
 
