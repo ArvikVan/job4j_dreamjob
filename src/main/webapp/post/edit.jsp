@@ -12,7 +12,7 @@
     <input type="text" class="form-control" name="name" value="<%=post.getName()%>">
 --%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="dream.store.Store" %>
+<%@ page import="dream.store.MemStore" %>
 <%@ page import="dream.models.Post" %>
 <!doctype html>
 <html lang="en">
@@ -38,7 +38,7 @@
     String id = request.getParameter("id");
     Post post = new Post(0, "");
     if (id != null) {
-        post = Store.instOf().findById(Integer.parseInt(id));
+        post = MemStore.instOf().findById(Integer.parseInt(id));
     }
 %>
 <div class="container pt-3">
