@@ -16,7 +16,7 @@ import java.io.IOException;
  * @since 08.12.2021
  */
 public class DeleteServlet extends HttpServlet {
-    private static final String IMAGEPATH = Config.getConfig().getProperty("path.images");
+    private static final String IMAG_EPATH = Config.getConfig().getProperty("path.images");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class DeleteServlet extends HttpServlet {
         String id = req.getParameter("id");
         req.setCharacterEncoding("UTF-8");
         Store.instOf().deleteCandidate(Integer.parseInt(req.getParameter("id")));
-        File file = new File(IMAGEPATH.concat(id)
+        File file = new File(IMAG_EPATH.concat(id)
                 + ".png");
         file.delete();
         resp.sendRedirect(req.getContextPath() + "/candidate.do");
