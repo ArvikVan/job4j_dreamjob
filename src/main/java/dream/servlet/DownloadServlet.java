@@ -16,12 +16,12 @@ import java.util.Objects;
  * @since 07.12.2021
  */
 public class DownloadServlet extends HttpServlet {
-    String imagePath = Config.getConfig().getProperty("path.images");
+    private static final String IMAGEPATH = Config.getConfig().getProperty("path.images");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         File downloadFile = null;
-        for (File file : Objects.requireNonNull(new File(imagePath).listFiles())) {
+        for (File file : Objects.requireNonNull(new File(IMAGEPATH).listFiles())) {
             if (name.equals(file.getName())) {
                 downloadFile = file;
                 break;
