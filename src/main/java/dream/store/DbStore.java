@@ -2,6 +2,7 @@ package dream.store;
 
 import dream.models.Candidate;
 import dream.models.Post;
+import dream.servlet.UploadServlet;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -18,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author ArvikV
@@ -25,8 +28,8 @@ import java.util.Properties;
  * @since 10.12.2021
  */
 public class DbStore implements Store {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DbStore.class);
     private static final DbStore INSTANCE = new DbStore();
-
     private final BasicDataSource pool = new BasicDataSource();
 
     private DbStore() {
@@ -75,7 +78,7 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("public Collection<Post> findAllPosts()", e);
         }
         return posts;
     }
@@ -92,33 +95,53 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("public Collection<Candidate> findAllCandidates()", e);
         }
         return candidates;
     }
 
     @Override
-    public void save(Post post) {
+    public void savePost(Post post) {
         if (post.getID() == 0) {
-            create(post);
+            createPost(post);
         } else {
-            update(post);
+            updatePost(post);
         }
     }
 
-    private void update(Post post) {
+    @Override
+    public void saveCandidate(Candidate candidate) {
+        if (candidate.getId() == 0) {
+            createCandidate(candidate);
+        } else {
+            updateCandidate(candidate);
+        }
+    }
+
+    private void updatePost(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("UPDATE post SET name = ? where id = ?")) {
             ps.setString(1, post.getName());
             ps.setInt(2, post.getID());
             ps.executeUpdate();
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("private void updatePost(Post post)", e);
+        }
+    }
+
+    private void updateCandidate(Candidate candidate) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("UPDATE candidate SET name = ? where id = ?")) {
+            ps.setString(1, candidate.getName());
+            ps.setInt(2, candidate.getId());
+            ps.executeUpdate();
+        } catch (Exception e) {
+            LOGGER.error("private void updatePost(Post post)", e);
         }
     }
 
     @Override
-    public Post findById(int id) {
+    public Post findByIdPost(int id) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("SELECT * FROM post WHERE id = ?")
         ) {
@@ -134,7 +157,24 @@ public class DbStore implements Store {
         return null;
     }
 
-    private Post create(Post post) {
+    @Override
+    public Candidate findByIdCandidate(int id) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("SELECT * FROM candidate WHERE id = ?")
+        ) {
+            ps.setInt(1, id);
+            try (ResultSet it = ps.executeQuery()) {
+                if (it.next()) {
+                    return new Candidate(it.getInt("id"), it.getString("name"));
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("public Candidate findByIdCandidate(int id)", e);
+        }
+        return null;
+    }
+
+    private Post createPost(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps =  cn.prepareStatement("INSERT INTO post(name) VALUES (?)",
                      PreparedStatement.RETURN_GENERATED_KEYS)
@@ -147,9 +187,27 @@ public class DbStore implements Store {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            LOGGER.error("private Post create(Post post)", e);
         }
         return post;
+    }
+
+    private Candidate createCandidate(Candidate candidate) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps =  cn.prepareStatement("INSERT INTO candidate(name) VALUES (?)",
+                     PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, candidate.getName());
+            ps.execute();
+            try (ResultSet id = ps.getGeneratedKeys()) {
+                if (id.next()) {
+                    candidate.setId(id.getInt(1));
+                }
+            }
+        } catch (Exception e) {
+            LOGGER.error("private Candidate createCandidate(Candidate candidate)", e);
+        }
+        return candidate;
     }
 
 
