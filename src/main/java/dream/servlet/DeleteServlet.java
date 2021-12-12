@@ -1,7 +1,7 @@
 package dream.servlet;
 
 import dream.properties.Config;
-import dream.store.MemStore;
+import dream.store.DbStore;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -20,7 +20,7 @@ public class DeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.setAttribute("candidates", MemStore.instOf().findAllCandidates());
+        req.setAttribute("candidates", DbStore.instOf().findAllCandidates());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 
@@ -29,7 +29,7 @@ public class DeleteServlet extends HttpServlet {
             throws IOException {
         String id = req.getParameter("id");
         req.setCharacterEncoding("UTF-8");
-        MemStore.instOf().deleteCandidate(Integer.parseInt(req.getParameter("id")));
+        DbStore.instOf().deleteCandidate(Integer.valueOf(id));
         File file = new File(IMAG_EPATH.concat(id)
                 + ".png");
         file.delete();

@@ -20,6 +20,10 @@ public interface Store {
 
     void saveCandidate(Candidate candidate);
 
+    void deletePost(int id);
+
+    void deleteCandidate(int id);
+
     Post findByIdPost(int id);
 
     Candidate findByIdCandidate(int id);

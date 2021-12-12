@@ -8,7 +8,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%@ page import="dream.store.MemStore" %>
+<%@ page import="dream.store.DbStore" %>
 <%@ page import="dream.models.Post" %>
 <%@ page import="java.util.Collection" %>
 <!doctype html>
