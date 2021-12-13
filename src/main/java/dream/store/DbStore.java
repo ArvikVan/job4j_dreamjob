@@ -37,7 +37,7 @@ public class DbStore implements Store {
         try (BufferedReader io = new BufferedReader(
                 new InputStreamReader(
                         DbStore.class.getClassLoader()
-                                .getResourceAsStream("db.properties")
+                                .getResourceAsStream("dbstore.properties")
                 )
         )) {
             cfg.load(io);
