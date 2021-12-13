@@ -87,7 +87,7 @@ public class DbStore implements Store {
     public Collection<Candidate> findAllCandidates() {
         List<Candidate> candidates = new ArrayList<>();
         try (Connection connection = pool.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement("select * from candidate")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("select * from candidate")) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     candidates.add(new Candidate(resultSet.getInt("id"),

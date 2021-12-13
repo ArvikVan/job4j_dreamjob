@@ -1,10 +1,9 @@
 <%--
   Created by IntelliJ IDEA.
   User: arvik
-  Date: 05.12.2021
-  Time: 19:09
+  Date: 14.12.2021
+  Time: 0:18
   To change this template use File | Settings | File Templates.
-  http://localhost:8081/job4j_dreamjob/posts.jsp
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -44,22 +43,22 @@
             <div class="card-body">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th scope="col">Названия</th>
-                        </tr>
+                    <tr>
+                        <th scope="col">Названия</th>
+                    </tr>
                     </thead>
-                            <tbody>
-                                <c:forEach items="${posts}" var="post">
-                                <tr>
-                                    <td>
-                                        <a href='<c:url value="/post/edit.jsp?id=${post.ID}"/>'>
-                                            <i class="fa fa-edit mr-3"></i>
-                                        </a>
-                                        <c:out value="${post.name}"/>
-                                    </td>
-                                </tr>
-                                </c:forEach>
-                            </tbody>
+                    <tbody>
+                    <c:forEach items="${posts}" var="post">
+                        <tr>
+                            <td>
+                                <a href='<c:url value="/post/edit.jsp?id=${post.ID}"/>'>
+                                    <i class="fa fa-edit mr-3"></i>
+                                </a>
+                                <c:out value="${post.name}"/>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
                 </table>
             </div>
 
@@ -68,5 +67,8 @@
     </div>
 
 </div>
+</body>
+</html>
+
 </body>
 </html>
