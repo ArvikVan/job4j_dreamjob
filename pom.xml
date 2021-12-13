@@ -35,7 +35,7 @@
       <properties>
         <db.url>jdbc:postgresql://127.0.0.1:5432/DbStore</db.url>
         <db.username>postgres</db.username>
-        <db.password>Arvijka</db.password>
+        <db.password>password</db.password>
         <db.driver>org.postgresql.Driver</db.driver>
       </properties>
     </profile>
