@@ -5,6 +5,7 @@
   Time: 1:51
   To change this template use File | Settings | File Templates.
 --%>
+<%@ page import="dream.models.User" %>
 <%@ page language="java" pageEncoding="UTF-8" session="true"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <!DOCTYPE html>
@@ -41,7 +42,7 @@
         </tbody>
     </table>
     <h2>Upload image</h2>
-    <form action="<c:url value='/upload?id='/><%=request.getParameter("id")%>" method="post" enctype="multipart/form-data">
+    <form action="<c:url value='/upload'/>" method="post" enctype="multipart/form-data">
         <div class="checkbox">
             <input type="file" name="file">
         </div>

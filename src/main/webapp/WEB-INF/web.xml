@@ -1,9 +1,19 @@
+
 <!DOCTYPE web-app PUBLIC
- "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
- "http://java.sun.com/dtd/web-app_2_3.dtd" >
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <filter>
+    <filter-name>AuthFilter</filter-name>
+    <filter-class>dream.filter.AuthFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>AuthFilter</filter-name>
+    <url-pattern>*.do</url-pattern>
+  </filter-mapping>
   <servlet>
     <servlet-name>PostServlet</servlet-name>
     <servlet-class>dream.servlet.PostServlet</servlet-class>
@@ -16,7 +26,6 @@
     <servlet-name>IndexServlet</servlet-name>
     <servlet-class>dream.servlet.IndexServlet</servlet-class>
   </servlet>
-  <!-- Http протокол позволяет передавать файлы между клиентом и сервером-->
   <servlet>
     <servlet-name>DownloadServlet</servlet-name>
     <servlet-class>dream.servlet.DownloadServlet</servlet-class>
@@ -50,13 +59,12 @@
     <servlet-name>CandidateServlet</servlet-name>
     <url-pattern>/candidate.do</url-pattern>
   </servlet-mapping>
-  <!-- Обратите внимание. Этот сервлет будет доступен по адресу /index.do.
-  Тут есть расширение, оно нужно будет в разделе безопастность.-->
+
   <servlet-mapping>
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index.do</url-pattern>
   </servlet-mapping>
-  <!-- Http протокол позволяет передавать файлы между клиентом и сервером-->
+
   <servlet-mapping>
     <servlet-name>DownloadServlet</servlet-name>
     <url-pattern>/download</url-pattern>

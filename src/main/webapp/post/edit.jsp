@@ -27,7 +27,7 @@
     }
 %>
 <div class="container pt-3">
-    <jsp:include page="/menu.jsp" />
+    <c:import url="/menu.jsp" />
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
@@ -41,7 +41,7 @@
                 <form action="<%=request.getContextPath()%>/post.do?id=<%=post.getID()%>" method="post">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control" name="name" value = "<%=post.getName()%>">
+                        <input type="text" class="form-control" name="name" value="<%=post.getName()%>">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
@@ -51,3 +51,4 @@
 </div>
 </body>
 </html>
+

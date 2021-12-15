@@ -1,3 +1,4 @@
+
 <%--
   Created by IntelliJ IDEA.
   User: arvik
@@ -5,8 +6,8 @@
   Time: 20:15
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!doctype html>
 <html lang="en">
 <jsp:include page="header.jsp" />

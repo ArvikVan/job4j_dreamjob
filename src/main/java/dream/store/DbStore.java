@@ -11,6 +11,7 @@ import dream.models.Post;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,13 +35,8 @@ public class DbStore implements Store {
 
     private DbStore() {
         Properties cfg = new Properties();
-        try (BufferedReader io = new BufferedReader(
-                new InputStreamReader(
-                        DbStore.class.getClassLoader()
-                                .getResourceAsStream("dbstore.properties")
-                )
-        )) {
-            cfg.load(io);
+        try (InputStream in = getClass().getClassLoader().getResourceAsStream("dbstore.properties")) {
+            cfg.load(in);
         } catch (Exception e) {
             throw new IllegalStateException(e);
         }
