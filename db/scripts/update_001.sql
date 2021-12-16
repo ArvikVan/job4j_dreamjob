@@ -8,7 +8,7 @@ create table if not exists candidate (
     name text
 );
 
-CREATE TABLE if not exist user (
+CREATE TABLE if not exists user (
     id serial primary key,
     name text,
     email text,
