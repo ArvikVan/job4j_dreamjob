@@ -7,3 +7,10 @@ create table if not exists candidate (
     id serial primary key,
     name text
 );
+
+CREATE TABLE if not exist user (
+    id serial primary key,
+    name text,
+    email text,
+    password text
+);

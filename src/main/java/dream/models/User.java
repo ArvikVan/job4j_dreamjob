@@ -11,7 +11,12 @@ public class User {
     private int id;
     private String name;
     private String email;
-    private String passord;
+    private String password;
+
+    public User(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public int getId() {
         return id;
@@ -37,12 +42,12 @@ public class User {
         this.email = email;
     }
 
-    public String getPassord() {
-        return passord;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassord(String passord) {
-        this.passord = passord;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
