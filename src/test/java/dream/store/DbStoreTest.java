@@ -2,6 +2,7 @@ package dream.store;
 
 import dream.models.Candidate;
 import dream.models.Post;
+import dream.models.User;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;
@@ -58,6 +59,15 @@ public class DbStoreTest {
         Candidate candidateInDb = store.findByIdCandidate(candidate.getId());
         store.deleteCandidate(candidateInDb.getId());
         assertThat(store.findByIdCandidate(candidateInDb.getId()), is(nullValue()));
+    }
+
+    @Test
+    public void whenCreateUser() {
+        Store store = DbStore.instOf();
+        User user = new User(0, "Java Job");
+        store.saveUser(user);
+        User postInDb = store.findByIdUser(user.getId());
+        assertThat(postInDb.getId(), is(user.getId()));
     }
 
 }

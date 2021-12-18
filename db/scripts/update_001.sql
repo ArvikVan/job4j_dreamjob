@@ -1,4 +1,4 @@
-CREATE TABLE if not exists post (
+CREATE TABLE if not exists POST (
     id serial primary key,
     name text
 );
@@ -8,7 +8,7 @@ create table if not exists candidate (
     name text
 );
 
-CREATE TABLE if not exists user (
+CREATE TABLE if not exists users (
     id serial primary key,
     name text,
     email text,

@@ -13,19 +13,22 @@ import java.io.IOException;
 /**
  * @author ArvikV
  * @version 1.0
- * @since 14.12.2021
+ * @since 18.12.2021
  */
-public class AuthServlet extends HttpServlet {
+public class RegServlet extends HttpServlet {
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        String name = req.getParameter("name");
         String email = req.getParameter("email");
+        String password = req.getParameter("password");
         if (DbStore.instOf().findByEmailUser(email) != null) {
+            req.setAttribute("error", "Email занят");
+            req.getRequestDispatcher("reg.jsp").forward(req, res);
+        } else {
+            DbStore.instOf().saveUser(new User(name, email, password));
             HttpSession session = req.getSession();
             session.setAttribute("user", DbStore.instOf().findByEmailUser(email));
-            resp.sendRedirect(req.getContextPath() + "/post.do");
-        } else {
-            req.setAttribute("error", "Не верный email или пароль");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            res.sendRedirect(req.getContextPath() + "/post.do");
         }
     }
 }
