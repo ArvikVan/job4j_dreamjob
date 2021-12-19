@@ -19,9 +19,12 @@ public class AuthServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
-        if (DbStore.instOf().findByEmailUser(email) != null) {
+        String password = req.getParameter("password");
+        User userEmail = DbStore.instOf().findByEmailUser(email);
+
+        if (userEmail != null && password.equals(userEmail.getPassword())) {
             HttpSession session = req.getSession();
-            session.setAttribute("user", DbStore.instOf().findByEmailUser(email));
+            session.setAttribute("user", userEmail);
             resp.sendRedirect(req.getContextPath() + "/post.do");
         } else {
             req.setAttribute("error", "Не верный email или пароль");

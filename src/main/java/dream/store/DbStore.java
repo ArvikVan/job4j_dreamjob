@@ -325,7 +325,9 @@ public class DbStore implements Store {
                 if (it.next()) {
                     return new User(
                             it.getInt("id"),
-                            it.getString("name"));
+                            it.getString("name"),
+                            it.getString("email"),
+                            it.getString("password"));
                 }
             }
         } catch (Exception e) {
