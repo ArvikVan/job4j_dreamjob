@@ -18,6 +18,25 @@
             if (gender == "") alert("input " + $("#formGroupExampleInput3").attr("title"));
             if (description == "") alert("input " + $("#formGroupExampleInput4").attr("title"));
         }
+
+        /**
+         * получаем значение полей
+         * получаем ссылку на последний элемент в таблице.
+         * и после него добавляем html
+         */
+        function addRow() {
+            const name = $('#formGroupExampleInput').val();
+            const surname = $('#formGroupExampleInput2').val();
+            const gender = $('#formGroupExampleInput3').val();
+            const description = $('#formGroupExampleInput4').val();
+            const id = +$('#fio tr:last th').html() + 1;
+
+            $('#fio tr:last').after('<tr><th>' + id + '</th>'
+                                    + '<td>' + name +'</td>'
+                                    + '<td>' + surname +'</td>'
+                                    + '<td>' + gender +'</td>'
+                                    + '<td>' + description +'</td></tr>');
+        }
     </script>
 </head>
 <body>
@@ -43,14 +62,16 @@
         <input type="text" class="form-control" id="formGroupExampleInput4" title="Enter user description." placeholder="DESCRIPTION">
     </div>
     <button type="button" class="btn btn-default" onclick="return validate();">Submit</button>
+    <button type="button" class="btn btn-default" onclick="addRow()">Add row</button>
 </form>
-<table class="table table-dark">
+<table class="table table-dark" id = 'fio'>
     <thead>
     <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">Name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Description</th>
     </tr>
     </thead>
     <tbody>
@@ -58,19 +79,22 @@
         <th scope="row">1</th>
         <td>Mark</td>
         <td>Otto</td>
-        <td>@mdo</td>
+        <td>Male</td>
+        <td>MarkOttoMale</td>
     </tr>
     <tr>
         <th scope="row">2</th>
         <td>Jacob</td>
         <td>Thornton</td>
-        <td>@fat</td>
+        <td>Male</td>
+        <td>JacobThornton</td>
     </tr>
     <tr>
         <th scope="row">3</th>
         <td>Larry</td>
         <td>the Bird</td>
-        <td>@twitter</td>
+        <td>Male</td>
+        <td>LarryBirdMale</td>
     </tr>
     </tbody>
 </table>
