@@ -13,22 +13,24 @@
             const surname = $("#formGroupExampleInput2").val();
             const gender = $("#formGroupExampleInput3").val();
             const description = $("#formGroupExampleInput4").val();
+            let bool = true;
             if (name == "") {
                 alert("input " + $("#formGroupExampleInput").attr("title"));
-                return false;
+                bool = false;
             }
             if (surname == "") {
                 alert("input " + $("#formGroupExampleInput2").attr("title"));
-                return false;
+                bool = false;
             }
             if (gender == "") {
                 alert("input " + $("#formGroupExampleInput3").attr("title"));
-                return false;
+                bool = false;
             }
             if (description == "") {
                 alert("input " + $("#formGroupExampleInput4").attr("title"));
-                return false;
+                bool = false;
             }
+            return bool;
         }
 
         /**
@@ -37,17 +39,19 @@
          * и после него добавляем html
          */
         function addRow() {
-            const name = $('#formGroupExampleInput').val();
-            const surname = $('#formGroupExampleInput2').val();
-            const gender = $('#formGroupExampleInput3').val();
-            const description = $('#formGroupExampleInput4').val();
-            const id = +$('#fio tr:last th').html() + 1;
+            if (validate()) {
+                const name = $('#formGroupExampleInput').val();
+                const surname = $('#formGroupExampleInput2').val();
+                const gender = $('#formGroupExampleInput3').val();
+                const description = $('#formGroupExampleInput4').val();
+                const id = +$('#fio tr:last th').html() + 1;
 
-            $('#fio tr:last').after('<tr><th>' + id + '</th>'
-                                    + '<td>' + name +'</td>'
-                                    + '<td>' + surname +'</td>'
-                                    + '<td>' + gender +'</td>'
-                                    + '<td>' + description +'</td></tr>');
+                    $('#fio tr:last').after('<tr><th>' + id + '</th>'
+                        + '<td>' + name +'</td>'
+                        + '<td>' + surname +'</td>'
+                        + '<td>' + gender +'</td>'
+                        + '<td>' + description +'</td></tr>');
+            }
         }
     </script>
 </head>
