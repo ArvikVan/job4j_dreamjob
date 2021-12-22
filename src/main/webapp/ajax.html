@@ -17,20 +17,36 @@
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>AJAX</title>
+    <!--'http://localhost:8081/job4j_dreamjob/greet'-->
 </head>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js" ></script>
 <script>
     function sendGreeting() {
-        const email = $('#email').val();
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: 'http://localhost:8081/job4j_dreamjob/greet',
-            data: 'name=' + email,
-            dataType: 'text'
-        }).done(function(data) {
-            $('#email').before('<br>' + email + '<br>');
-        }).fail(function(err){
-            alert(err);
+            data: JSON.stringify({
+                name: $('#email').val()
+            }),
+            dataType: 'json'
+        }).done(function (data) {
+            $('#emailList li:last').append('<li>${data.name}</li>')
+        }).fail(function (err) {
+            console.log(err);
+        });
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                crossdomain: true,
+                url: 'http://localhost:8081/job4j_dreamjob/greet',
+                dataType: 'json'
+            }).done(function (data) {
+                for (let email of data) {
+                    $('#emailList li:last').append(`<li>${email.name}</li>`)
+                }
+            }).fail(function (err) {
+                console.log(err);
+            });
         });
     }
 </script>
@@ -38,12 +54,16 @@
 <div class="container">
     <form>
         <div class="form-group">
-            <div id="submittedEmail"></div>
             <label for="email" style="font-weight: bold">Email address</label>
             <input type="text" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
         </div>
         <button type="button" class="btn btn-primary" onclick="sendGreeting()">Submit</button>
     </form>
+    <br>
+    Почты:
+    <ul id="emailList">
+        <li></li>
+    </ul>
 </div>
 </body>
 </html>
