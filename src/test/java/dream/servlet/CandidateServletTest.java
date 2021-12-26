@@ -26,6 +26,7 @@ public class CandidateServletTest {
 
         when(req.getParameter("id")).thenReturn("0");
         when(req.getParameter("name")).thenReturn("candidate");
+        when(req.getParameter("city")).thenReturn("1");
         new CandidateServlet().doPost(req, resp);
         Candidate candidate = DbStore.instOf().findByIdCandidate(0);
         assertThat(candidate, nullValue());

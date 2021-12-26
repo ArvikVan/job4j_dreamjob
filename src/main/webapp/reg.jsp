@@ -23,15 +23,15 @@
                 <form action="<%=request.getContextPath()%>/reg.do" method="post">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control" name="name">
+                        <input type="text" class="form-control" name="name" required placeholder="name">
                     </div>
                     <div class="form-group">
                         <label>Почта</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" required placeholder="email">
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" name="password" required placeholder="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
                     <c:if test="${not empty error}">

@@ -15,13 +15,14 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ page import="dream.store.DbStore" %>
 <%@ page import="dream.models.Post" %>
+<%@ page import="java.time.LocalDateTime" %>
 <!doctype html>
 <html lang="en">
 <jsp:include page="/header.jsp" />
 <body>
 <%
     String id = request.getParameter("id");
-    Post post = new Post(0, "");
+    Post post = new Post(0, "", "", LocalDateTime.now());
     if (id != null) {
         post = DbStore.instOf().findByIdPost(Integer.parseInt(id));
     }
@@ -40,8 +41,14 @@
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/post.do?id=<%=post.getID()%>" method="post">
                     <div class="form-group">
-                        <label>Имя</label>
-                        <input type="text" class="form-control" name="name" value="<%=post.getName()%>">
+                        <label>Название вакансии</label>
+                        <input type="text" class="form-control" id="namePost" name="name" required value="<%=post.getName()%>"
+                               title="Введите название вакансии" placeholder="Введите название вакансии"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Описание</label>
+                        <input type="text" class="form-control" name="description" required  value="<%=post.getDescription()%>"
+                               id="description" title="Введите описание" placeholder="Введите описание вакансии"/>
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>

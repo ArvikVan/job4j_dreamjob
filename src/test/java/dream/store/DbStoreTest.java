@@ -4,6 +4,9 @@ import dream.models.Candidate;
 import dream.models.Post;
 import dream.models.User;
 import org.junit.Test;
+
+import java.time.LocalDateTime;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
@@ -17,7 +20,7 @@ public class DbStoreTest {
     @Test
     public void whenCreatePost() {
         Store store = DbStore.instOf();
-        Post post = new Post(0, "Java Job");
+        Post post = new Post(0, "Java Job", "description", LocalDateTime.now());
         store.savePost(post);
         Post postInDb = store.findByIdPost(post.getID());
         assertThat(postInDb.getName(), is(post.getName()));
@@ -25,7 +28,7 @@ public class DbStoreTest {
     @Test
     public void whenCreateCandidate() {
         Store store = DbStore.instOf();
-        Candidate candidate = new Candidate(0, "Vasiliy Terkin");
+        Candidate candidate = new Candidate(0, "Vasiliy Terkin", 0, LocalDateTime.now());
         store.saveCandidate(candidate);
         Candidate candidateInDb = store.findByIdCandidate(candidate.getId());
         assertThat(candidateInDb.getName(), is(candidate.getName()));
@@ -33,7 +36,7 @@ public class DbStoreTest {
     @Test
     public void whenUpdatePost() {
         Store store = DbStore.instOf();
-        Post post = new Post(0, "Java Job");
+        Post post = new Post(0, "Java Job", "description", LocalDateTime.now());
         store.savePost(post);
         post.setName("Updated Java Job");
         store.savePost(post);
@@ -43,7 +46,7 @@ public class DbStoreTest {
     @Test
     public void whenUpdateCandidate() {
         Store store = DbStore.instOf();
-        Candidate candidate = new Candidate(0, "Vasiliy Terkin");
+        Candidate candidate = new Candidate(0, "Vasiliy Terkin", 0, LocalDateTime.now());
         store.saveCandidate(candidate);
         candidate.setName("Updated Vasiliy Terkin");
         store.saveCandidate(candidate);
@@ -53,7 +56,7 @@ public class DbStoreTest {
     @Test
     public void whenDeleteCandidate() {
         Store store = DbStore.instOf();
-        Candidate candidate = new Candidate(0, "Vasiliy Terkin");
+        Candidate candidate = new Candidate(0, "Vasiliy Terkin", 0, LocalDateTime.now());
         store.saveCandidate(candidate);
         Candidate candidateInDb = store.findByIdCandidate(candidate.getId());
         store.deleteCandidate(candidateInDb.getId());

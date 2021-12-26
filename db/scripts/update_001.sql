@@ -1,11 +1,15 @@
 CREATE TABLE if not exists POST (
     id serial primary key,
-    name text
+    name text,
+    description text,
+    created timestamp
 );
 
 create table if not exists candidate (
     id serial primary key,
-    name text
+    name text,
+    city_id integer,
+    created timestamp
 );
 
 CREATE TABLE if not exists users (
@@ -14,3 +18,8 @@ CREATE TABLE if not exists users (
     email text,
     password text
 );
+create table if not exists city (
+    id serial primary key,
+    name text
+);
+

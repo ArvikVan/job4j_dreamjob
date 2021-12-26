@@ -20,6 +20,21 @@
         candidate = DbStore.instOf().findByIdCandidate(Integer.parseInt(id));
     }
 %>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8081/job4j_dreamjob/cities',
+            dataType: 'json'
+        }).done(function (data) {
+            for (var city of data) {
+                $('#cities').append(`<option value="${city.id}">${city.name}</option>`)
+            }
+        }).fail(function (err) {
+            console.log(err);
+        });
+    });
+</script>
 <div class="container pt-3">
     <jsp:include page="/menu.jsp" />
     <div class="row">
@@ -35,7 +50,13 @@
                 <form action="<%=request.getContextPath()%>/candidate.do?id=<%=candidate.getId()%>" method="post">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control"  name="name" value="<%=candidate.getName()%>">
+                        <input type="text" class="form-control"  name="name" required value="<%=candidate.getName()%>">
+                    </div>
+                    <div class="form-group">
+                        <label for="cities">Город</label>
+                        <select class="form-control" id="cities" required name="city" title="Выберите город">
+                            <option selected value="0">Выберите город...</option>
+                        </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>

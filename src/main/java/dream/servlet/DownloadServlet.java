@@ -1,5 +1,6 @@
 package dream.servlet;
 import dream.properties.Config;
+import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
+
+import static java.lang.System.in;
 
 /**
  * @author ArvikV
@@ -21,14 +24,12 @@ public class DownloadServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String name = req.getParameter("name");
         File downloadFile = null;
-        for (File file : Objects.requireNonNull(new File(IMAGE_PATH).listFiles())) {
-            if (name.equals(file.getName())) {
+        for (File file : new File(IMAGE_PATH).listFiles()) {
+            if (file.getName().equals(name)) {
                 downloadFile = file;
                 break;
             }
         }
-
-        assert downloadFile != null;
         try (FileInputStream stream = new FileInputStream(downloadFile)) {
             resp.getOutputStream().write(stream.readAllBytes());
             resp.setContentType("application/octet-stream");

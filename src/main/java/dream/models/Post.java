@@ -26,6 +26,28 @@ public class Post {
         this.name = name;
     }
 
+    public Post(String name, String description, LocalDateTime created) {
+        this.name = name;
+        this.description = description;
+        this.created = created;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public int getID() {
         return id;
     }

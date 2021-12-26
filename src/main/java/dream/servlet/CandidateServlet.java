@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 /**
  * @author ArvikV
@@ -23,7 +24,11 @@ public class CandidateServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         DbStore.instOf().saveCandidate(
                 new Candidate(
-                        Integer.parseInt(request.getParameter("id")), request.getParameter("name")));
+                        Integer.parseInt(request.getParameter("id")),
+                                request.getParameter("name"),
+                        Integer.parseInt(request.getParameter("city")),
+                                LocalDateTime.now())
+        );
         response.sendRedirect(request.getContextPath() + "/candidate.do");
     }
 
@@ -35,6 +40,8 @@ public class CandidateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("candidates", DbStore.instOf().findAllCandidates());
+        req.setAttribute("cities", DbStore.instOf().findAllCities());
+        req.setAttribute("user", req.getSession().getAttribute("user"));
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 }

@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class UploadServlet extends HttpServlet {
-    private static final String IMAGE_PATH = Config.getConfig().getProperty("path.images");
+    private static final String IMAGE_PATH = Config.getProperty("path.images");
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         List<String> images = new ArrayList<>();

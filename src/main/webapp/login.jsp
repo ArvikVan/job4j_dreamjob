@@ -23,11 +23,11 @@
                 <form action="<%=request.getContextPath()%>/auth.do" method="post">
                     <div class="form-group">
                         <label>Почта</label>
-                        <input type="text" class="form-control" name="email">
+                        <input type="text" class="form-control" name="email" required placeholder="email">
                     </div>
                     <div class="form-group">
                         <label>Пароль</label>
-                        <input type="text" class="form-control" name="password">
+                        <input type="text" class="form-control" name="password" required placeholder="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Войти</button>
                     <a class="btn btn-primary" href="<%=request.getContextPath()%>/reg.jsp">Регистрация</a>

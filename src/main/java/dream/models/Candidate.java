@@ -1,5 +1,6 @@
 package dream.models;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -13,6 +14,8 @@ public class Candidate {
     private int id;
     private String name;
     private String image;
+    private int cityId;
+    private LocalDateTime created;
 
     public Candidate(int id, String name) {
         this.id = id;
@@ -23,6 +26,29 @@ public class Candidate {
         this.id = id;
         this.name = name;
         this.image = image;
+    }
+
+    public Candidate(int id, String name, int cityId, LocalDateTime created) {
+        this.id = id;
+        this.name = name;
+        this.cityId = cityId;
+        this.created = created;
+    }
+
+    public LocalDateTime getCreated() {
+        return created;
+    }
+
+    public void setCreated(LocalDateTime created) {
+        this.created = created;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     public void setImage(String image) {
@@ -58,11 +84,11 @@ public class Candidate {
             return false;
         }
         Candidate candidate = (Candidate) o;
-        return id == candidate.id && Objects.equals(name, candidate.name);
+        return id == candidate.id && cityId == candidate.cityId && Objects.equals(name, candidate.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, cityId);
     }
 }

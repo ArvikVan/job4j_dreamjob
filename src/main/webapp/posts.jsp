@@ -7,6 +7,7 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <!doctype html>
 <html lang="en">
 <jsp:include page="header.jsp" />
@@ -25,6 +26,9 @@
                     <thead>
                     <tr>
                         <th scope="col">Названия</th>
+                        <th scope="col">Описание</th>
+                        <th scope="col">Дата создания</th>
+                        <th scope="col">Удалить</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -35,6 +39,13 @@
                                     <i class="fa fa-edit mr-3"></i>
                                 </a>
                                 <c:out value="${posts.name}"/>
+                            </td>
+                            <td>
+                                <c:out value="${posts.description}"/>
+                            </td>
+                            <td>
+                                <fmt:parseDate value="${posts.created}" pattern="yyyy-MM-dd'T'HH:mm" var="parseCreated"/>
+                                <fmt:formatDate value="${parseCreated}" pattern="dd.MM.yyyy HH:mm"/>
                             </td>
                             <td>
                                 <form action="<c:url value='/deletepost?id=${posts.ID}'/>" method="post" enctype="multipart/form-data">

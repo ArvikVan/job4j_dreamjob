@@ -1,6 +1,7 @@
 package dream.store;
 
 import dream.models.Candidate;
+import dream.models.City;
 import dream.models.Post;
 import dream.models.User;
 
@@ -19,6 +20,12 @@ public interface Store {
     Collection<Candidate> findAllCandidates();
 
     Collection<User> findAllUsers();
+
+    Collection<City> findAllCities();
+
+    Collection<Post> findLastDayPosts();
+
+    Collection<Candidate> findLastDayCandidates();
 
     void savePost(Post post);
 
@@ -39,5 +46,4 @@ public interface Store {
     User findByIdUser(int id);
 
     User findByEmailUser(String email);
-
 }
