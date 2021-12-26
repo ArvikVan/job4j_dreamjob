@@ -24,7 +24,7 @@
     $(document).ready(function () {
         $.ajax({
             type: 'GET',
-            url: 'http://localhost:8081/job4j_dreamjob/cities',
+            url: `http://${location.host}/job4j_dreamjob/cities`,
             dataType: 'json'
         }).done(function (data) {
             for (var city of data) {
